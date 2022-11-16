@@ -1,0 +1,72 @@
+/* font 설정 */
+
+@font-face {
+  font-family: 'SangSangShinb7';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.1/SangSangShinb7.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PyeongChangPeace-Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PyeongChangPeace-Light';
+  src: url("/font/PyeongChangPeace-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KOTRAHOPE';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #fff8ee;
+}
+
+h1 {
+  font-family: 'PyeongChangPeace-Bold';
+  font-size: 5em;
+  /* font-weight: 700; */
+  font-style: normal;
+}
+
+p {
+  font-family: 'KOTRAHOPE';
+  font-size: 1.5rem;
+  font-weight: normal;
+  font-style: normal;
+} 
+
+/* .btn-bd-primary {
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--bd-violet);
+  --bs-btn-border-color: var(--bd-violet);
+  --bs-btn-border-radius: .5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #{shade-color($bd-violet, 10%)};
+  --bs-btn-hover-border-color: #{shade-color($bd-violet, 10%)};
+  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #{shade-color($bd-violet, 20%)};
+  --bs-btn-active-border-color: #{shade-color($bd-violet, 20%)};
+} */
+
+/* .btn {
+  font-family: 'PyeongChangPeace-Bold';
+  --bs-btn-color: #F2889B;
+  --bs-btn-bg: #F2889B;
+  color: #FFFFFF;
+  color-hover: #F2889B;
+  background-color: #F2889B;
+  border: #F2889B;
+  } */
