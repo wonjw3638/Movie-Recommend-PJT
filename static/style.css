@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: 'PyeongChangPeace-Light';
-  src: url("/font/PyeongChangPeace-Light.ttf") format("truetype");
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
 }
@@ -28,23 +28,72 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'KOTRA_GOTHIC';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/KOTRA_GOTHIC.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HBIOS-SYS';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HSSaemaul-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* style */
+
 body {
+  /* opacity: 0.2; */
   background-color: #fff8ee;
+  /* background-color: black; */
 }
 
 h1 {
+  /* font-family: 'HBIOS-SYS'; */
   font-family: 'PyeongChangPeace-Bold';
-  font-size: 5em;
+  font-size: 5rem;
   /* font-weight: 700; */
   font-style: normal;
+  /* color:white; */
+}
+
+h2 {
+  /* font-family: 'HBIOS-SYS'; */
+  font-family: 'PyeongChangPeace-Light';
+  font-size: 3rem;
+  /* font-weight: 700; */
+  font-style: normal;
+  /* color:white; */
 }
 
 p {
   font-family: 'KOTRAHOPE';
+  /* font-family: 'KOTRAHOPE'; */
   font-size: 1.5rem;
   font-weight: normal;
   font-style: normal;
 } 
+
+/* .background {
+  background-image: url('background/image1.png');
+  opacity: 0.6;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-size: cover;
+  z-index: -1;
+} */
 
 /* .btn-bd-primary {
   --bs-btn-font-weight: 600;

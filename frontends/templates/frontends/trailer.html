@@ -8,6 +8,21 @@
     font-weight: bold;
   }
   
+  {% comment %} .return {
+    position : ;
+  } {% endcomment %}
+
+  #movie_title {
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  {% comment %} .badge-title {
+    --bs-badge-color : #F2889B;
+  } {% endcomment %}
+
   .btn-bd-primary-good {
     --bs-btn-font-family:'KOTRAHOPE';
     --bs-btn-font-weight: 200;
@@ -42,18 +57,44 @@
     --bs-btn-active-border-color: #699177;
   }
 
+  .btn-return {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.2rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #f29e38;
+    --bs-btn-border-color: #f29e38;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #eb9936;
+    --bs-btn-hover-border-color: #eb9936;
+    --bs-btn-focus-shadow-rgb: #f29e38;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #de8d2c;
+    --bs-btn-active-border-color: #de8d2c;
+  }
+
 </style>
 {% endblock style %}
 
 {% block content %}
-<div class="row justify-content-center my-5">
-  <h1 id="index" class="col-12 text-center mb-5">1 / 10</h1>
-  <div class="ratio ratio-16x9 col-5" style="width: 70rem;">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/u8GQibRXVHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="row justify-content-center">
+  <div class="row mt-4 mb-3">
+    <div class="col">
+      <a href="{% url 'frontends:choice' %}">
+        <button type="button" class="btn btn-primary btn-return">영화 개수 바꾸기</button>
+      </a>
+    </div>
+    <h1 id="index" class="col text-center mb-3">1 / 10</h1>
+    <div class="col"></div>
   </div>
-  <div class="col-8 row justify-content-center">
-    <a href="#" class="col-auto btn btn-primary btn-bd-primary-good mx-1 my-3">👍 Good</a>
-    <a href="#" class="col-auto btn btn-primary btn-bd-primary-bad mx-1 my-3">👎 Bad</a>
+  <div class="ratio ratio-16x9 col-5 position-relative" style="width: 70rem;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/u8GQibRXVHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <span id="movie_title" class="text-center position-absolute top-100 start-50 translate-middle badge text-bg-dark" style="width:auto; height:auto;">토이스토리4</span>
+  </div>
+  <div class="col-8 row justify-content-center mt-5">
+    <a href="{% url 'frontends:result' %}" class="col-auto btn btn-primary btn-bd-primary-good mx-1 my-3 text-center" style="width:7rem;">👍 Good</a>
+    <a href="{% url 'frontends:result' %}" class="col-auto btn btn-primary btn-bd-primary-bad mx-1 my-3 text-center" style="width:7rem;">👎 Bad</a>
   </div>
 </div>
 {% endblock content %}
