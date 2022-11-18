@@ -10,4 +10,4 @@ def trailer(request):
     return render(request, 'frontends/trailer.html')
 
 def result(request):
-    return render(request, 'frontends/result.html')
+    return render(request, 'frontends/result.html') 

@@ -9,24 +9,94 @@
     font-weight: 100;
   }
 
+  .btn-bd-primary-genre1 {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 2rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
+  .btn-bd-primary-genre2 {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 2rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #95BFA4;
+    --bs-btn-border-color: #95BFA4;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #7ba88b;
+    --bs-btn-hover-border-color: #7ba88b;
+    --bs-btn-focus-shadow-rgb: #95BFA4;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #699177;
+    --bs-btn-active-border-color: #699177;
+  }
+
+  .btn-bd-primary-genre3 {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 2rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #f28444;
+    --bs-btn-border-color: #f28444;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #eb9936;
+    --bs-btn-hover-border-color: #eb9936;
+    --bs-btn-focus-shadow-rgb: #f29e38;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #de8d2c;
+    --bs-btn-active-border-color: #de8d2c;
+  }
+
+  .btn-like {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #f29e38;
+    --bs-btn-border-color: #f29e38;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #eb9936;
+    --bs-btn-hover-border-color: #eb9936;
+    --bs-btn-focus-shadow-rgb: #f29e38;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #de8d2c;
+    --bs-btn-active-border-color: #de8d2c;
+  }
+
 </style>
 {% endblock style %}
 
 {% block content %}
-
+  
   {% include 'frontends/result/_genre.html' %}
   
   <div class="row justify-content-center">
-    <div class="col-12 d-flex justify-content-center my-2" id="flush-headingFour">
-      <button class="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-        ❤ 고른 영화들
+    {% comment %} <div class="col-12 d-flex justify-content-center my-2" id="flush-headingFour">
+      <button class="btn btn-primary collapsed btn-like" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+        고른 영화들
       </button>
     </div>
 
     <div id="flush-collapseFour" class="accordion-collapse collapse col-auto" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
         <h2 class="text-center">고른 영화들</h2>
-        {% include 'frontends/result/__carousel4.html' %}
-    </div>
+        <div class="d-flex justify-content-center">
+          {% include 'frontends/result/__carousel4.html' %}
+        </div>
+    </div> {% endcomment %}
 
     {% comment %} <div class="col-12 d-flex justify-content-center my-2">
       <button class="btn btn-primary" type="submit">고른 영화들</button>
@@ -34,7 +104,7 @@
     
     <div class="col-12 d-flex justify-content-center my-2">
       <a href="{% url 'frontends:choice' %}">
-        <button class="btn btn-primary" type="submit">처음부터 다시하기</button>
+        <button class="btn btn-primary btn-like" type="submit">처음부터 다시하기</button>
       </a>
     </div>
   </div>

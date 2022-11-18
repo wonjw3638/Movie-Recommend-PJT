@@ -84,7 +84,24 @@
 {% endblock content %}
   
 {% block script %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <script>
-  
+  const form = document.querySelector("form")
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault()
+    console.log(event.target.pcs.value)
+
+    const pcs = event.target.pcs.value
+
+    axios({
+      method: 'post',
+      url: `/accounts/${userId}/follow/`,
+      headers: {'X-CSRFToken' : csrftoken}
+    })
+
+  })
+
 </script>
 {% endblock script %}
