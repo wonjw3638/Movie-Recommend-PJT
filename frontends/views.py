@@ -11,3 +11,6 @@ def trailer(request):
 
 def result(request):
     return render(request, 'frontends/result.html') 
+
+def detail(request):
+    return render(request, 'frontends/detail.html') 

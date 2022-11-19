@@ -92,15 +92,8 @@
   form.addEventListener("submit", function(event) {
     event.preventDefault()
     console.log(event.target.pcs.value)
-
+    
     const pcs = event.target.pcs.value
-
-    axios({
-      method: 'post',
-      url: `/accounts/${userId}/follow/`,
-      headers: {'X-CSRFToken' : csrftoken}
-    })
-
   })
 
 </script>
