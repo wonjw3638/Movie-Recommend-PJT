@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+{% for movie in selected_movie %}
+  {{movie.id}}
+  <hr>
+{% endfor %}
+  <div class="trailer">
+    <button id="like-button">like</button>
+    <button id="dislike-button">dislike</button>
+    <div class="movie">
+      <p>제목: <span class="title">{{ selected_movie.0.id }}</span></p>
+    </div>
+  </div>
+  
+{% endblock content %}
+
+{% block script %}
+  <script>
+    const option = Number("{{ option }}")
+    const likeButton = document.querySelector("#like-button")
+    const dislikeButton = document.querySelector("#dislike-button")
+    const movieTag = document.querySelector(".movie")
+    const titleTag = document.querySelector(".title")
+    let idx = 1
+    
+    function clickButton(event, pref) {
+      axios({
+        method: 'get',
+        url: `/choices/${idx - 1}/${pref}/`
+      })
+        .then((res) => {
+          titleTag.innerHTML = res.data.id
+          idx += 1
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      if(idx === option - 1){
+        console.log("now")
+        event.target.innerHTML = "NEXT"
+        // event.target.removeEventListener("click", clickButton)
+        // event.target.setAttribute('onclick', "location.href='{% url 'choices:final' %}'")
+      }
+    }
+
+    likeButton.addEventListener('click', (event) => {
+      clickButton(event, "like")
+    })
+
+    dislikeButton.addEventListener('click', (event) => {
+      clickButton(event, "dislike")
+    })
+  </script>
+{% endblock script %}

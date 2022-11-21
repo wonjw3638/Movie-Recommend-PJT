@@ -16,10 +16,12 @@
         {% include 'frontends/detail/_title.html' %}
         <p>등등 다른 정보들</p>
       </div>
+    </div>
+</div>
       
 
     {% comment %} 댓글 {% endcomment %}
-    {% for comment in comments %}
+    {% comment %} {% for comment in comments %}
     <div>
       {{ comment.user }} - {{ comment.content }}
     </div>  
@@ -33,10 +35,8 @@
     {% else %}
         <a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
     {% endif %}
-    <a href="{% url 'community:index' %}">[back]</a>
+    <a href="{% url 'community:index' %}">[back]</a> {% endcomment %}
 
-    </div>
-  </div>
 {% endblock content %}
 
 {% block script %}
