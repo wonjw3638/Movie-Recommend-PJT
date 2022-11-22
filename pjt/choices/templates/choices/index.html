@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+
+  a {
+    text-decoration : none;
+  }
+  
+  #main {
+    margin: 15% auto;
+  }
+  
+  .btn-bd-primary {
+    --bs-btn-font-family:'PyeongChangPeace-Bold';
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
+  .btn-signup {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 300;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+  
+  .btn-login {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 300;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: #F2889B;
+    --bs-btn-bg: white;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: #e88092;
+    --bs-btn-hover-bg: #f2f2f2;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #d66d7f;
+    --bs-btn-active-bg: #e6e6e6;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
+</style>
+{% endblock style %}
+  
+
+{% block content %}
+
+{% if user.is_authenticated %}
+  <div class="row d-flex justify-content-end m-3">
+    <button type="button" class="btn btn-primary btn-signup col-auto" onclick="location.href='{% url 'accounts:profile' user %}'">내 프로필</button>
+    <form action="{% url 'accounts:logout' %}" method="POST" class="col-auto">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary btn-login">Logout</button>
+    </form>
+  </div>
+  <div id="main" class="col row align-items-center">
+    <h1 class="col-12 justify-content-center text-center my-2">
+      🎬 영화 취향찾기 <img src="{% static 'favicon/android-chrome-512x512.png' %}" alt="{% static 'favicon/android-chrome-512x512.png' %}" class="col-1">
+    </h1>
+      <a href="{% url 'choices:start' %}" class="d-grid gap-2 col-2 mx-auto">
+        <button type="button" class="btn btn-primary btn-bd-primary">START</button>
+      </a>
+  </div>
+{% else %}
+  <div id="main" class="col row align-items-center">
+    <h1 class="col-12 justify-content-center text-center my-4">
+      🎬 영화 취향찾기 <img src="{% static 'favicon/android-chrome-512x512.png' %}" alt="{% static 'favicon/android-chrome-512x512.png' %}" class="col-1">
+    </h1>
+      <p class="col-12 text-center ">🎀회원가입과 로그인이 필요한 서비스 입니다🙌</p>
+      <div class="col d-flex justify-content-center">
+        <a href="{% url 'accounts:signup' %}" class="mx-2">
+          <button type="button" class="btn btn-primary btn-signup">회원가입</button>
+        </a>
+        <a href="{% url 'accounts:login' %}" class="mx-2">
+          <button type="button" class="btn btn-primary btn-login">로그인</button>
+        </a>
+      </div>
+  </div>
+{% endif %}
+
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

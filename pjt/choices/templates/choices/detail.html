@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+
+  #title {
+    font-family: 'PyeongChangPeace-Bold';
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .btn-return {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
+</style>
+{% endblock style %}
+
+{% block content %}
+
+<div class="row d-flex justify-content-end my-2 mx-2 p-0">
+  <button type="button" class="btn btn-primary btn-return rounded-4 col-auto" onclick="location.href='{% url 'choices:index' %}'">처음으로</button>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="row row-cols-1 row-cols-lg-2 my-5 d-flex justify-content-center">
+      <div class="col d-flex justify-content-center">
+        <img src="{% static 'dummy/movie1.jpg' %}" class="" alt="{{choices.title}}" style="height : 45rem;">
+      </div>
+      <div class="col">
+        <div class = "my-3">
+          <p id="title" class="d-flex justify-content-center">블랙팬서:와칸다 포에버</p>
+          <hr>
+          <div class="my-2">
+            <span class="text fw-bold">개봉날짜 </span>
+            <span class="text fw-bold text-muted">: 2022.11.22</span><br>
+          </div>
+          <div class="my-2 d-flex align-items-center">
+            <span class="text fw-bold">장르 </span>
+            <span class="badge rounded-pill text-bg-primary mx-2">스릴러</span><br>
+          </div>
+          <div class="my-2">
+            <span class="text fw-bold">평점 </span>
+            <span class="text fw-bold text-muted">: 5.0</span><br>
+          </div>
+        </div>
+        <p class="fw-bold">줄거리</p>
+        <p class="text text-muted"> 블랙팬서 어쩌구 저쩌구 짱짱</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+{% endblock script %}

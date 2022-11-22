@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+
+  label{
+    font-family: 'KOTRAHOPE';
+    font-size: 1.5rem;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  li {
+    color:#db705e;
+    font-family: 'KOTRAHOPE';
+    font-size: 1.2rem;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .btn-signup {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 300;
+    --bs-btn-font-size: 1.3rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+  
+
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<div class="row d-flex justify-content-center mt-3">
+  <h1 class="col-12 text-center mb-5"> 로그인 </h1>
+  
+  <div class="card p-3" style="width: 30rem;">
+    <div class="d-flex justify-content-center">
+      <img src="{% static 'image/signIn.png' %}" alt="signup" style="width: 20rem;">
+    </div>
+    <div class="card-body">
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row g-3 align-items-center">
+          <div class="row col-12 my-3">
+            <div class="col-auto">
+              <label for="inputUsername" class="form-label">닉네임</label>
+            </div>
+            <div class="col-auto">
+              {{ form.username }}
+              {% if form.errors.username %}
+              {{ form.errors.username }}
+              {% endif %}
+            </div>
+            <div class="col-auto">
+              <div id="usernameHelp" class="form-text"></div>
+            </div>
+          </div>
+          <div class="row col-12 my-3">
+            <div class="col-auto">
+              <label for="inputPassword6" class="form-label">비밀번호</label>
+            </div>
+            <div class="col-auto">
+              {{ form.password }}
+              {% if form.errors.password %}
+              {{ form.errors.password }}
+              {% endif %}
+            </div>
+            <div class="col-auto">
+            </div>
+          </div>
+        {% if form.errors %}
+          {{ form.non_field_errors }}
+        {% endif %}
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary btn-signup">로그인</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock  %}
