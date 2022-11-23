@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+
+  #choice {
+    margin: 6% auto;
+  }
+  
+  #good {
+    color: #fe889b;
+    font-weight: bold;
+  }
+  
+  #bad {
+    color: #95bfa4;
+    font-weight: bold;
+  }
+  
+  #card_text_time {
+    font-family: 'HSSaemaul-Regular';
+    color:#b3b3b3;
+    font-weight: 50;
+  }
+  
+  #choice_card {
+    font-family:'HSSaemaul-Regular';
+    font-weight: 100;
+    font-size: 1.2rem;
+  }
+  
+  .btn-bd-primary {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 300;
+    --bs-btn-font-size: 1.2rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+  
+  .btn-bd-primary-return {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 300;
+    --bs-btn-font-size: 1.2rem;
+    --bs-btn-color: #F2889B;
+    --bs-btn-bg: white;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: #e88092;
+    --bs-btn-hover-bg: #f2f2f2;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #d66d7f;
+    --bs-btn-active-bg: #e6e6e6;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
+</style>
+{% endblock style %}
+
+{% block content %}
+  <div id="choice" class="row d-flex justify-content-center">
+    
+    <h1 class="col-12 text-center my-5">🎬 영화 취향찾기</h1>
+    <p class="text-center mb-3">
+        영화의 트레일러를 보고<br>
+        마음에 드는 영화라면 <span id="good">👍Good</span> 버튼을<br>
+        마음에 들지 않는 다면 <span id="bad">👎Bad</span> 버튼을 누르면 됩니다!<br>
+        <br>
+        몇 개의 영화 트레일러를 확인할까요?😎
+      </p>
+
+      {% include 'frontends/choice/_card.html' %}
+
+  </div>
+{% endblock content %}
+  
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+  const form = document.querySelector("form")
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault()
+    console.log(event.target.pcs.value)
+    
+    const pcs = event.target.pcs.value
+  })
+
+</script>
+{% endblock script %}

@@ -1,0 +1,65 @@
+
+<div class="row justify-content-center mt-5" id="accordionFlushExample">
+  <div class="col-auto">
+    <div class="" id="flush-headingOne">
+      <button class="btn btn-primary btn-bd-primary-genre1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        스릴러
+      </button>
+    </div>
+  </div>
+  <div class="col-auto">
+    <div class="" id="flush-headingTwo">
+      <button class="btn btn-primary btn-bd-primary-genre2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        SF
+      </button>
+    </div>
+  </div>
+  <div class="col-auto">
+    <div class="" id="flush-headingThree">
+      <button class="btn btn-primary btn-bd-primary-genre3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        판타지
+      </button>
+    </div>
+  </div>
+  
+  <h1 class="text-center my-3">장르의 영화를 선호하시네요!</h1>
+  
+  <div class="col-4">
+    <div id="flush-collapseOne" class="accordion-collapse collapse col-auto" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">
+        <h2 class="text-center">스릴러 영화 추천</h2>
+        <div class="d-flex justify-content-center">
+          {% include 'frontends/result/__carousel1.html' %}
+        </div>
+      </div>
+    </div>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse col-auto" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <h2 class="text-center">SF 영화 추천</h2>
+      <div class="d-flex justify-content-center">
+        {% include 'frontends/result/__carousel2.html' %}
+      </div>
+    </div>
+    <div id="flush-collapseThree" class="accordion-collapse collapse col-auto" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <h2 class="text-center">판타지 영화 추천</h2>
+      <div class="d-flex justify-content-center">
+        {% include 'frontends/result/__carousel3.html' %}
+      </div>
+    </div>
+  </div>
+
+  {% comment %} 추가 {% endcomment %}
+
+  <div class="col-12 d-flex justify-content-center my-2" id="flush-headingFour">
+    <button class="btn btn-primary collapsed btn-like" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+      고른 영화들
+    </button>
+  </div>
+
+  <div id="flush-collapseFour" class="accordion-collapse collapse col-auto" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+      <h2 class="text-center">고른 영화들</h2>
+      <div class="d-flex justify-content-center">
+        {% include 'frontends/result/__carousel4.html' %}
+      </div>
+  </div>
+
+</div>
