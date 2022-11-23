@@ -1,0 +1,40 @@
+
+<div class="row justify-content-center mt-5" id="accordionFlushExample">
+  {% for genre in genre_names %}
+    <div class="col-auto">
+      <div class="" id="flush-heading{{ forloop.counter }}">
+        <button class="btn btn-primary btn-bd-primary-genre{{ forloop.counter }} collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
+          {{ genre }}
+        </button>
+      </div>
+    </div>
+  {% endfor %}
+  
+  <h1 class="text-center my-3">장르의 영화를 선호하시네요!</h1>
+  
+  <div class="col-4">
+    {% for genre, movies in genre_recommends.items %}
+      <div id="flush-collapse{{ forloop.counter }}" class="accordion-collapse collapse col-auto" aria-labelledby="flush-heading{{ forloop.counter }}" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          <h2 class="text-center">{{ genre }} 영화 추천</h2>
+          <div class="d-flex justify-content-center">
+            {% include 'choices/result/__recommend_carousel.html' %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+  <div class="col-12 d-flex justify-content-center my-2" id="flush-headingFour">
+    <button class="btn btn-primary collapsed btn-like" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+      고른 영화들
+    </button>
+  </div>
+
+  <div id="flush-collapseFour" class="accordion-collapse collapse col-auto" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+      <h2 class="text-center">고른 영화들</h2>
+      <div class="d-flex justify-content-center">
+        {% include 'choices/result/__picked_carousel.html' %}
+      </div>
+  </div>
+
+</div>

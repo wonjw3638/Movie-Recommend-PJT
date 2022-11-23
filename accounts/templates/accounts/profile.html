@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+  #userName{
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  #userEmail{
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  #genre{
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .moviesLike{
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+    color:white;
+    background-color:#FAC789;
+  }
+
+  .moviesGenre1{
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+    color:white;
+    background-color:#F2889B;
+  }
+
+  .moviesGenre2{
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+    color:white;
+    background-color:#95BFA4;
+  }
+
+  .moviesGenre3{
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 2vw;
+    font-weight: bold;
+    text-align: center;
+    color:white;
+    background-color:#f28444;
+  }
+
+  .btn-return {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
+  .btn-like {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #FAC789;
+    --bs-btn-border-color: #FAC789;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #edba7b;
+    --bs-btn-hover-border-color: #edba7b;
+    --bs-btn-focus-shadow-rgb: #FAC789;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d9a566;
+    --bs-btn-active-border-color: #d9a566;
+  }
+
+
+  .btn-genre1 {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
+  .btn-genre2 {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #95BFA4;
+    --bs-btn-border-color: #95BFA4;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #7ba88b;
+    --bs-btn-hover-border-color: #7ba88b;
+    --bs-btn-focus-shadow-rgb: #95BFA4;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #699177;
+    --bs-btn-active-border-color: #699177;
+  }
+
+  .btn-genre3 {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #f28444;
+    --bs-btn-border-color: #f28444;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #eb9936;
+    --bs-btn-hover-border-color: #eb9936;
+    --bs-btn-focus-shadow-rgb: #f29e38;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #de8d2c;
+    --bs-btn-active-border-color: #de8d2c;
+  }
+
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<div class="row d-flex justify-content-end my-2 mx-2 p-0">
+  <button type="button" class="btn btn-primary btn-return rounded-4 col-auto" onclick="location.href='{% url 'choices:index' %}'">처음으로</button>
+</div>
+
+<div class="row mt-5 p-1">
+  <div class="col-12 col-sm-6 col-md-4 col-lg-2 p-0">
+    <div class="d-flex flex-column align-items-center text-center p-3 py-5 m-3">
+      <img class="rounded-circle" style="width:12rem; height:12rem;" src="{% static 'image/profile.png' %}">
+      <span id="userName" class="mt-4">{{ person.username }}</span>
+      <span id="userEmail" class="text-black-50">{{ person.email }}</span>
+      
+      <button id="total" class="btn btn-primary btn-like rounded-4 my-4" type="button">전체보기</button>
+
+      <span id="genre" class="mt-5 mb-3">좋아하는 장르</span>
+      {% for genre in genre_names %}
+        <button id="genre{{ forloop.counter }}" class="btn btn-primary btn-genre{{ forloop.counter }} rounded-4 my-1" type="button">{{ genre }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-md-8 col-lg-10 px-3">
+    <div class="rounded-4 bg-white position-relative">
+      <span id="moviesTitle" class="position-absolute top-0 start-50 translate-middle rounded-5 px-5 moviesLike">{{ person.username }}의 모든 영화</span>
+      <div class="movie-box row p-4">
+        <img src="{% static 'image/loading.png' %}" alt="signup" style="width: 20rem;">
+        <!-- <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie1.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
+        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie2.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
+        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie3.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
+        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie4.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
+        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie5.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
+        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie6.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
+        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie7.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
+        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie8.jpg' %}" class="rounded-4 img-fluid" alt="..."></a> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+  const userName = document.querySelector('#userName').innerText
+
+  function clickGenre(event, genre){
+    const title = document.querySelector('#moviesTitle')
+    title.setAttribute('class', 'position-absolute top-0 start-50 translate-middle rounded-5 px-5 ')
+    if (genre === 0){
+      title.classList.add('moviesLike')
+    } else if (genre === 1){
+      title.classList.add('moviesGenre1')
+    } else if (genre === 2){
+      title.classList.add('moviesGenre2')
+    } else {
+      title.classList.add('moviesGenre3')
+    }
+    
+    axios({
+      method: 'get',
+      url: `/accounts/profile/${userName}/${genre}/`
+    })
+    .then((res) => {
+      title.innerText = `${userName}의 ${res.data.genre_name[genre]} 영화`
+      movies = res.data.final[genre]
+      const boxTag = document.querySelector('.movie-box')
+      boxTag.replaceChildren()
+      for (const movie of movies){
+        const movieBox = document.createElement('a')
+        const id = 3
+        {% comment %} console.log(id) {% endcomment %}
+        movieBox.setAttribute('class', 'd-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3')
+        movieBox.setAttribute('href', '{% url 'movies:detail' movie_pk=0 %}'.replace('0', movie.pk))
+  
+        const imgTag = document.createElement('img')
+        imgTag.setAttribute('src', `https://image.tmdb.org/t/p/original${movie.poster}`)
+        imgTag.setAttribute('class', 'rounded-4 img-fluid')
+  
+        movieBox.appendChild(imgTag)
+        boxTag.appendChild(movieBox)
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  clickGenre(event, 0)
+
+  const btn = document.querySelector('#total')
+  btn.addEventListener('click', (event) => {
+    clickGenre(event, 0)
+  })
+  
+  const btn1 = document.querySelector('#genre1')
+  btn1.addEventListener('click', (event) => {
+    clickGenre(event, 1)
+  })
+  
+  const btn2 = document.querySelector('#genre2')
+  btn2.addEventListener('click', (event) => {
+    clickGenre(event, 2)
+  })
+      
+  const btn3 = document.querySelector('#genre3')
+  btn3.addEventListener('click', (event) => {
+    clickGenre(event, 3)
+  })
+
+</script>
+{% endblock script %}

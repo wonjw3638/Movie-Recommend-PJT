@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<style>
+
+  #title {
+    font-family: 'PyeongChangPeace-Bold';
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .btn-return {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
+</style>
+{% endblock style %}
+
+{% block content %}
+
+
+<div class="row d-flex justify-content-end my-2 mx-2 p-0">
+  <button type="button" class="btn btn-primary btn-return rounded-4 col-auto" onclick="history.back()">뒤로가기</button>
+</div>
+
+<div class="container">
+  <div class="row">
+
+    <div class="row row-cols-1 row-cols-lg-2 my-5 d-flex justify-content-center">
+      <div class="col d-flex justify-content-center">
+        <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" class="" alt="{{choices.title}}" style="height : 45rem;">
+      </div>
+      <div class="col">
+        <div class = "my-3">
+          <p id="title" class="d-flex justify-content-center">{{ movie.title }}</p>
+          <hr>
+          <div class="my-2">
+            <span class="text fw-bold">개봉날짜 </span>
+            <span class="text fw-bold text-muted">: {{ movie.release_date }}</span><br>
+          </div>
+          <div class="my-2 d-flex align-items-center">
+            <span class="text fw-bold">장르 </span>
+            <span class="badge rounded-pill text-bg-primary mx-2">스릴러</span><br>
+          </div>
+          <div class="my-2">
+            <span class="text fw-bold">평점 </span>
+            <span class="text fw-bold text-muted">: {{ movie.vote_average }}</span><br>
+          </div>
+        </div>
+        <p class="fw-bold">줄거리</p>
+        <p class="text text-muted">{{ movie.overview }}</p>
+        <hr>
+        <h4>댓글 목록</h4>
+        {% if comments|length %}
+        <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
+        {% endif %}
+        <div style="overflow:auto; width:500px; height:150px;">
+          
+          {% for comment in comments %}
+          <div>
+            {{ comment.user }} - {{ comment.content }}
+          </div>
+          {% empty %}
+          <p>🤔 리뷰가 없습니다</p>
+          {% endfor %}
+          <hr>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">리뷰 남기기</button>
+          
+          {% comment %} Modal {% endcomment %}
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{ movie.title }}</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{% url 'movies:create_comment' movie.pk %}" method="POST">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                    <div class="row g-3 align-items-center">
+                      <div class="row col-12 my-3">
+                        <span id="score1" data-movie="{{ movie.pk }}">1</span>
+                        <span id="score5" data-movie="{{ movie.pk }}">5</span>
+                        <span id="score10" data-movie="{{ movie.pk }}">10</span>
+                        <div class="col-auto">
+                          <label for="inputUsername" class="form-label">리뷰 작성</label>
+                        </div>
+                        <div class="col-auto">
+                          {{ comment_form.content }}
+                          {% if comment_form.errors.content %}
+                          {{ comment_form.errors.content }}
+                        {% endif %}
+                      </div>
+                      <div class="col-auto">
+                        <div id="usernameHelp" class="form-text"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="submit" class="btn btn-primary">확인</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          {% comment %} <form action="{% url 'movies:create_comment' movie.pk %}" method="POST"> {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block script %}
+
+<script>
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  
+  const score_1 = document.querySelector('#score1')
+  const score_5 = document.querySelector('#score5')
+  const score_10 = document.querySelector('#score10')
+
+  score_1.addEventListener('click', (event) => {
+    ratingScore(event, 1)
+  })
+
+  score_5.addEventListener('click', (event) => {
+    ratingScore(event, 5)
+  })
+
+  score_10.addEventListener('click', (event) => {
+    ratingScore(event, 10)
+  })
+
+  function ratingScore(event, score) {
+    event.preventDefault()
+    console.log(score)
+    console.log(event.target.dataset.movie)
+    const movie_pk = event.target.dataset.movie
+    
+    axios({
+      method: 'post',
+      url: `${movie_pk}/comments/create/`,
+      headers: {'X-CSRFToken' : csrftoken},
+    })
+    .then((res) => {
+      console.log(res)
+    })
+  }
+
+
+
+
+</script>
+{% endblock script %}
