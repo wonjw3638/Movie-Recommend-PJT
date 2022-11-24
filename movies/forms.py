@@ -9,7 +9,7 @@ class CommentForm(forms.ModelForm):
             "type":"text",
             "class":"form-control",
             "id":"inputComment",
-            "placeholder":"리뷰를 남겨주세요! 스포일러는 삼가주세요💕",
+            "placeholder":"리뷰를 남겨주세요!💕",
             "maxlength":"140",
         })
 

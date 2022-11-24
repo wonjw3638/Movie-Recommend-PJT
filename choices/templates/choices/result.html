@@ -77,16 +77,60 @@
     --bs-btn-active-border-color: #de8d2c;
   }
 
+  .btn-signup {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 300;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #F2889B;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #e88092;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #d66d7f;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+  
+  .btn-login {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 300;
+    --bs-btn-font-size: 1.5rem;
+    --bs-btn-color: #F2889B;
+    --bs-btn-bg: white;
+    --bs-btn-border-color: #F2889B;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: #e88092;
+    --bs-btn-hover-bg: #f2f2f2;
+    --bs-btn-hover-border-color: #e88092;
+    --bs-btn-focus-shadow-rgb: #F2889B;
+    --bs-btn-active-color: #d66d7f;
+    --bs-btn-active-bg: #e6e6e6;
+    --bs-btn-active-border-color: #d66d7f;
+  }
+
 </style>
 {% endblock style %}
 
 {% block content %}
+
+  <div class="row d-flex justify-content-end m-3">
+    <button type="button" class="btn btn-primary btn-signup col-auto" onclick="location.href='{% url 'accounts:profile' user %}'">내 프로필</button>
+    <form action="{% url 'accounts:logout' %}" method="POST" class="col-auto">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary btn-login">Logout</button>
+    </form>
+  </div>
+
   {% if genre_names|length == 0 %}
   <h1 class="text-center my-3 pt-5">마음에 드는 영화가 없으셨나봐요</h1>
   {% else %}
   {% include 'choices/result/_list.html' %}
   {% endif %}
-  
+
+
   <div class="row justify-content-center">
     
     <div class="col-12 d-flex justify-content-center my-2">

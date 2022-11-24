@@ -49,6 +49,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'MonoplexKR-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_Monoplex-kr@1.0/MonoplexKR-Regular.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
 /* style */
 
 body {

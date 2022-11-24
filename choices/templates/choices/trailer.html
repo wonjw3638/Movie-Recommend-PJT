@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block style %}
 <style>
@@ -49,6 +50,23 @@
     --bs-btn-active-border-color: #699177;
   }
 
+  .btn-bd-review {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.2rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #f28444;
+    --bs-btn-border-color: #f28444;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #eb9936;
+    --bs-btn-hover-border-color: #eb9936;
+    --bs-btn-focus-shadow-rgb: #f29e38;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #de8d2c;
+    --bs-btn-active-border-color: #de8d2c;
+  }
+  
   .btn-return {
     --bs-btn-font-family:'KOTRAHOPE';
     --bs-btn-font-weight: 200;
@@ -65,7 +83,6 @@
     --bs-btn-active-bg: #de8d2c;
     --bs-btn-active-border-color: #de8d2c;
   }
-
 </style>
 {% endblock style %}
 
@@ -80,16 +97,41 @@
     <h1 id="index" class="col text-center mb-3"><span id="movie-idx">1</span> / {{ choice.option }}</h1>
     <div class="col"></div>
   </div>
-  <div class="trailer ratio ratio-16x9 col-5 position-relative shadow  bg-body rounded" style="width: 70rem;">
+  <div class="trailer ratio ratio-16x9 col-12 position-relative shadow  bg-body rounded" style="width: 70rem;">
       {% comment %} <iframe id="movie-trailer" src="{{ movies.0.trailer_url }}" title="YouTube video player" allowfullscreen></iframe> {% endcomment %}
       <span id="movie-title" class="text-center position-absolute top-100 start-50 translate-middle badge text-bg-dark" style="width:auto; height:auto;">{{ movies.0.title }}</span>
-    </div>
+  </div>
   <div class="col-8 row justify-content-center mt-5">
     <a href="" id="like-button" class="col-auto btn btn-primary btn-bd-primary-good mx-1 my-3 text-center" style="width:7rem;">👍 Good</a>
     <a href="" id="dislike-button" class="col-auto btn btn-primary btn-bd-primary-bad mx-1 my-3 text-center" style="width:7rem;">👎 Bad</a>
-    <a href="#" id="review-button" class="col-auto btn btn-primary btn-bd-primary-bad mx-1 my-3 text-center" style="width:7rem;">review</a>
+    <button type="button" class="col-auto btn btn-primary btn-bd-review mx-1 my-3 text-center" id="reviewToastBtn">📃 Review</button>    
   </div>
 </div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="ReviewToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast-header">
+      <img src="{% static 'favicon/android-chrome-512x512.png' %}" class="rounded me-2" alt="..." style="width:1.8rem;">
+      <strong class="me-auto">헤일리</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      이 영화 진짜 재미있어요! 다같이 보는 걸 추천합니다.
+    </div>
+  </div>
+  <div id="noReviewToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+    <div class="toast-header">
+      <img src="{% static 'favicon/android-chrome-512x512.png' %}" class="rounded me-2" alt="..." style="width:1.8rem;">
+      <strong class="me-auto">아직 리뷰가 없어요!</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="toast-container position-fixed bottom-0 end-0 p-3"> -->
+<!-- </div> -->
+
+
 {% endblock content %}
 
 {% block script %}
@@ -110,6 +152,11 @@
   
   function clickButton(event, pref) {
     event.preventDefault()
+    
+    const activeToastTag = document.querySelector('.toast-container > .show')
+    if(activeToastTag){
+      activeToastTag.classList.remove('show')
+    }
     axios({
       method: 'get',
       url: `/choices/${idx - 1}/${pref}/`
@@ -146,27 +193,55 @@
   dislikeButton.addEventListener('click', (event) => {
     clickButton(event, "dislike")
   })
-
-
-  const reviewTag = document.querySelector("#review-button")
+  
+  
+  const reviewTag = document.getElementById('reviewToastBtn')
   reviewTag.addEventListener("click", (event) => {
     event.preventDefault()
     axios({
       method: 'get',
       url: `/movies/${id}/comments/`
     })
-      .then((res) => {
-        reviews = res.data.comments
-        for (review of reviews){
-          console.log(review.user_id)
-          console.log(review.content)
-          console.log(review.rating)
-          console.log("----------------")
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    .then((res) => {
+      reviews = res.data.comments
+      if ( reviews.length === 0 ){
+        console.log("리뷰가 없음")
+        const toastTag = document.getElementById('noReviewToast')
+        const toast = new bootstrap.Toast(toastTag)
+        toast.show()
+      } else {
+        console.log("리뷰가 있음")
+        const randomReview = reviews[Math.floor(Math.random()*reviews.length)];
+        const toastTag = document.getElementById('ReviewToast')
+        const bodyTag = toastTag.querySelector('.toast-body')
+        bodyTag.innerHTML = randomReview.content
+        const userTag = toastTag.querySelector('strong')
+        userTag.innerHTML = randomReview.user_name
+
+
+
+        const toast = new bootstrap.Toast(toastTag)
+        toast.show()
+      }
+      
+      // console.log(reviews)
+      
+      
+      // for (review of reviews){
+      //   console.log(review)
+      //   console.log(review.user_name)
+      //   console.log(review.content)
+      //   console.log(review.rating)
+      //   console.log("-------")
+      // }
+      // const 
+      // console.log()
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   })
-</script>
+  
+    
+  </script>
 {% endblock script %}

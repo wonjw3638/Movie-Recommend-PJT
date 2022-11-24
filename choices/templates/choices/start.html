@@ -16,6 +16,11 @@
     font-weight: bold;
   }
 
+  #review {
+    color: #f28444;
+    font-weight: bold;
+  }
+
   #card_text_time {
     font-family: 'HSSaemaul-Regular';
     color: #b3b3b3;
@@ -67,11 +72,12 @@
 {% block content %}
 <div id="choice" class="row d-flex justify-content-center">
 
-  <h1 class="col-12 text-center my-5">🎬 영화 취향찾기</h1>
+  <h1 class="col-12 text-center mt-3 mb-5">🎬 영화 취향찾기</h1>
   <p class="text-center mb-3">
     영화의 트레일러를 보고<br>
     마음에 드는 영화라면 <span id="good">👍Good</span> 버튼을<br>
     마음에 들지 않는 다면 <span id="bad">👎Bad</span> 버튼을 누르면 됩니다!<br>
+    <span id="review">📃 Review</span> 버튼을 누르면 다른 사람들의 리뷰를 확인할 수 있습니다.<br>
     <br>
     몇 개의 영화 트레일러를 확인할까요?😎
   </p>
@@ -87,7 +93,7 @@
             <input class="form-check-input" type="radio" name="pcs" id="pcs1" value="5" checked />
             <label id="choice_card" class="form-check-label d-flex justify-content-between" for="pcs1">
               <span class="">5개</span>
-              <span id="card_text_time" class="">(예상 소요시간 : 5분 ~ 7분)</span>
+              <span id="card_text_time" class="">(예상 소요시간 : 5분)</span>
             </label>
           </div>
         </li>
@@ -96,7 +102,7 @@
             <input class="form-check-input" type="radio" name="pcs" id="pcs2" value="10" />
             <label id="choice_card" class="form-check-label d-flex justify-content-between" for="pcs2">
               <span class="">10개</span>
-              <span id="card_text_time" class="">(예상 소요시간 : 10분 ~ 15분)</span>
+              <span id="card_text_time" class="">(예상 소요시간 : 10분)</span>
             </label>
           </div>
         </li>
@@ -105,7 +111,7 @@
             <input class="form-check-input" type="radio" name="pcs" id="pcs3" value="20" />
             <label id="choice_card" class="form-check-label d-flex justify-content-between" for="pcs3">
               <span class="">20개</span>
-              <span id="card_text_time" class="">(예상 소요시간 : 15분 ~ 20분)</span>
+              <span id="card_text_time" class="">(예상 소요시간 : 15분)</span>
             </label>
           </div>
         </li>

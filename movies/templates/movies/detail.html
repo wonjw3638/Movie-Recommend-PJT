@@ -4,11 +4,43 @@
 {% block style %}
 <style>
 
+  span {
+    font-family: 'MonoplexKR-Regular';
+    font-size: 1.3rem;
+    font-weight: normal;
+  }
+
+  p {
+    font-family: 'MonoplexKR-Regular';
+    font-size: 1.3rem;
+    font-weight: normal;
+  }
+
   #title {
     font-family: 'PyeongChangPeace-Bold';
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
+  }
+  
+  .key {    
+    font-family: 'MonoplexKR-Regular';
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+
+  .rating {
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    text-align: center;
+    font-family: 'KOTRAHOPE';
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .description {
+    font-size: 1rem;
   }
 
   .btn-return {
@@ -28,6 +60,163 @@
     --bs-btn-active-border-color: #d66d7f;
   }
 
+  .btn-review {
+    --bs-btn-font-family:'KOTRAHOPE';
+    --bs-btn-font-weight: 200;
+    --bs-btn-font-size: 1.3rem;
+    --bs-btn-color: white;
+    --bs-btn-bg: #f28444;
+    --bs-btn-border-color: #f28444;
+    --bs-btn-border-radius: .5rem;
+    --bs-btn-hover-color: white;
+    --bs-btn-hover-bg: #eb9936;
+    --bs-btn-hover-border-color: #eb9936;
+    --bs-btn-focus-shadow-rgb: #f29e38;
+    --bs-btn-active-color: #ededed;
+    --bs-btn-active-bg: #de8d2c;
+    --bs-btn-active-border-color: #de8d2c;
+  }
+  
+  .btn-review-outline {
+  --bs-btn-font-family:'KOTRAHOPE';
+  --bs-btn-font-weight: 200;
+  --bs-btn-font-size: 1.3rem;
+  --bs-btn-color: #f28444;
+  --bs-btn-bg: white;
+  --bs-btn-border-color: #f28444;
+  --bs-btn-border-radius: .5rem;
+  --bs-btn-hover-color: #eb9936;
+  --bs-btn-hover-bg: #f2f2f2;
+  --bs-btn-hover-border-color: #eb9936;
+  --bs-btn-focus-shadow-rgb: #f29e38;
+  --bs-btn-active-color: #ededed;
+  --bs-btn-active-bg:  #e6e6e6;
+  --bs-btn-active-border-color: #de8d2c;
+}
+
+  #score-list > p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  #review_rating {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .active_1 {
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    background: #E43E3D;
+    text-align: center;
+  }
+
+  .active_2 {
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+    background: #EA484D;
+  }
+  
+  .active_3 {
+    background: #EC654E;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+  }
+  
+  .active_4 {
+    background: #EF874C;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+  }
+  
+  .active_5 {
+    background: #F3A74C;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+  }
+  
+  .active_6 {
+    background: #F8C43D;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+  }
+  
+  .active_7 {
+    background: #E1C63B;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+  }
+  
+  .active_8 {
+    background: #9FCD35;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+  }
+  
+  .active_9 {
+    background: #A7D94A;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+  }
+
+  .active_10 {
+    background: #5AAF2B;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 100%;
+    color:white;
+    text-align: center;
+  }
+
+  .review_rating{
+    font-family: 'KOTRAHOPE';
+    font-weight: bold;
+    font-size: 1.3rem;
+    color:white;
+  }
+
+  .review_user{
+    font-family: 'KOTRAHOPE';
+    font-weight: bold;
+    font-size: 0.8rem;
+  }
+  
+  .review_content{
+    font-family: 'MonoplexKR-Regular';
+    font-size: 1rem;
+  }
+
 </style>
 {% endblock style %}
 
@@ -43,85 +232,104 @@
 
     <div class="row row-cols-1 row-cols-lg-2 my-5 d-flex justify-content-center">
       <div class="col d-flex justify-content-center">
-        <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" class="" alt="{{choices.title}}" style="height : 45rem;">
+        <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" class="" alt="{{choices.title}}" style="height:50rem;">
       </div>
       <div class="col">
         <div class = "my-3">
           <p id="title" class="d-flex justify-content-center">{{ movie.title }}</p>
           <hr>
           <div class="my-2">
-            <span class="text fw-bold">개봉날짜 </span>
-            <span class="text fw-bold text-muted">: {{ movie.release_date }}</span><br>
+            <span class="text fw-bold key">개봉날짜 </span>
+            <span class="text text-muted">: {{ movie.release_date }}</span><br>
           </div>
           <div class="my-2 d-flex align-items-center">
             <span class="text fw-bold">장르 </span>
-            <span class="badge rounded-pill text-bg-primary mx-2">스릴러</span><br>
+            <div class="genre-container">
+              {% for genre in movie.genres.all %}
+                <span id="genre_pill" class="badge rounded-pill mx-2">{{ genre.name }}</span>
+              {% endfor %}
+            </div>
           </div>
           <div class="my-2">
-            <span class="text fw-bold">평점 </span>
-            <span class="text fw-bold text-muted">: {{ movie.vote_average }}</span><br>
+            <span class="text fw-bold key">평점 </span>
+            <span class="text text-muted">: {{ movie.vote_average }}</span><br>
           </div>
         </div>
-        <p class="fw-bold">줄거리</p>
-        <p class="text text-muted">{{ movie.overview }}</p>
+        <p class="fw-bold key">줄거리</p>
+        <p class="text text-muted description" style="overflow:auto; height:10em;">{{ movie.overview }}</p>
         <hr>
-        <h4>댓글 목록</h4>
-        {% if comments|length %}
-        <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
-        {% endif %}
-        <div style="overflow:auto; width:500px; height:150px;">
-          
+        <div class="d-flex justify-content-between mb-3">
+          <span class="key">📃 리뷰보기</span>
+          {% if comments|length %}
+          <span class="text-end fs-5 text-muted" style="font-family:'KOTRAHOPE';">{{ comments|length }}개의 리뷰</span>
+          {% endif %}
+        </div>
+        <div style="overflow:auto; height:12em;">
           {% for comment in comments %}
-          <div>
-            {{ comment.user }} - {{ comment.content }}
+          <div class="card my-1 p-1">
+            <div class="card-body row p-1">
+              <div class="col-2 d-flex justify-content-center align-items-center">
+                <p id="review_rating" class="review_rating m-0">{{ comment.rating }}</p>
+              </div>
+              <div class="col-10">
+                <p class="review_user m-0 p-0">{{ comment.user }}</p>
+                <p class="review_content m-0 p-0">{{ comment.content }}</p>
+              </div>
+            </div>
           </div>
           {% empty %}
-          <p>🤔 리뷰가 없습니다</p>
+          <p class="text-center fs-4 text-muted">🤔 리뷰가 없습니다</p>
           {% endfor %}
-          <hr>
         </div>
-        <div>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">리뷰 남기기</button>
+        <hr>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-primary btn-review" data-bs-toggle="modal" data-bs-target="#Modal">리뷰 작성</button>
           
           {% comment %} Modal {% endcomment %}
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">{{ movie.title }}</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header d-flex justify-content-between">
+                    <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close" style="visibility:hidden;"></button>
+                    <h1 class="modal-title text-center" id="ModalLabel" style="font-size: 3rem;">{{ movie.title }}</h1>
+                    <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{% url 'movies:create_comment' movie.pk %}" method="POST">
+                <form class="comment-form" action="{% url 'movies:create_comment' movie.pk %}" method="POST">
                   {% csrf_token %}
                   <div class="modal-body">
-                    <div class="row g-3 align-items-center">
-                      <div class="row col-12 my-3">
-                        <span id="score1" data-movie="{{ movie.pk }}">1</span>
-                        <span id="score5" data-movie="{{ movie.pk }}">5</span>
-                        <span id="score10" data-movie="{{ movie.pk }}">10</span>
-                        <div class="col-auto">
-                          <label for="inputUsername" class="form-label">리뷰 작성</label>
+                    <div class="row g-3 d-flex justify-content-center">
+                      <div class="col-auto">
+                        <span class="review_rating" style="color:black;">평점을 선택하세요</span>
+                      </div>
+                      <div class="row col-12 mt-2 mb-4 d-flex justify-content-center">
+                        <div id="score-list" class="row d-flex justify-content-evenly">
+                          <p id="score1" class="rating col-1" data-movie="{{ movie.pk }}"> 1</p>
+                          <p id="score2" class="rating col-1" data-movie="{{ movie.pk }}"> 2</p>
+                          <p id="score3" class="rating col-1" data-movie="{{ movie.pk }}"> 3</p>
+                          <p id="score4" class="rating col-1" data-movie="{{ movie.pk }}"> 4</p>
+                          <p id="score5" class="rating col-1" data-movie="{{ movie.pk }}"> 5</p>
+                          <p id="score6" class="rating col-1" data-movie="{{ movie.pk }}"> 6</p>
+                          <p id="score7" class="rating col-1" data-movie="{{ movie.pk }}"> 7</p>
+                          <p id="score8" class="rating col-1" data-movie="{{ movie.pk }}"> 8</p>
+                          <p id="score9" class="rating col-1" data-movie="{{ movie.pk }}"> 9</p>
+                          <p id="score10" class="rating col-1" data-movie="{{ movie.pk }}">10</p>
                         </div>
                         <div class="col-auto">
                           {{ comment_form.content }}
                           {% if comment_form.errors.content %}
                           {{ comment_form.errors.content }}
-                        {% endif %}
-                      </div>
-                      <div class="col-auto">
-                        <div id="usernameHelp" class="form-text"></div>
-                      </div>
+                          {% endif %}
+                        </div>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="submit" class="btn btn-primary">확인</button>
+                    <button type="button" class="btn btn-secondary btn-review-outline" data-bs-dismiss="modal">닫기</button>
+                    <button type="submit" class="btn btn-primary btn-review">확인</button>
                   </div>
                 </form>
               </div>
             </div>
           </div>
-          {% comment %} <form action="{% url 'movies:create_comment' movie.pk %}" method="POST"> {% endcomment %}
         </div>
       </div>
     </div>
@@ -136,39 +344,128 @@
 
 <script>
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  const review_scores = document.querySelectorAll('#review_rating')
   
-  const score_1 = document.querySelector('#score1')
-  const score_5 = document.querySelector('#score5')
-  const score_10 = document.querySelector('#score10')
-
-  score_1.addEventListener('click', (event) => {
-    ratingScore(event, 1)
-  })
-
-  score_5.addEventListener('click', (event) => {
-    ratingScore(event, 5)
-  })
-
-  score_10.addEventListener('click', (event) => {
-    ratingScore(event, 10)
-  })
-
-  function ratingScore(event, score) {
-    event.preventDefault()
-    console.log(score)
-    console.log(event.target.dataset.movie)
-    const movie_pk = event.target.dataset.movie
-    
-    axios({
-      method: 'post',
-      url: `${movie_pk}/comments/create/`,
-      headers: {'X-CSRFToken' : csrftoken},
-    })
-    .then((res) => {
-      console.log(res)
-    })
+  for (review_score of review_scores) {
+    console.log(review_score)
+    review_score.classList.add(`active_${review_score.innerText}`)
+    console.log(review_score.innerText)
   }
 
+  const score_1 = document.querySelector('#score1')
+  const score_2 = document.querySelector('#score2')
+  const score_3 = document.querySelector('#score3')
+  const score_4 = document.querySelector('#score4')
+  const score_5 = document.querySelector('#score5')
+  const score_6 = document.querySelector('#score6')
+  const score_7 = document.querySelector('#score7')
+  const score_8 = document.querySelector('#score8')
+  const score_9 = document.querySelector('#score9')
+  const score_10 = document.querySelector('#score10')
+  const score_div = document.querySelector('#score-list')
+  const score_list = document.querySelectorAll('#score-list > p')
+  
+  let user_score = 0
+
+  const commentForms = document.querySelectorAll('.comment-form')
+  commentForms.forEach(function(form){
+    form.addEventListener('submit', function(event){
+      event.preventDefault()
+      const data = new FormData(event.target)
+      
+      axios({
+        url: event.target.action,
+        method: 'post',
+        data: data,
+        params: {
+          'user_score': user_score 
+        }
+      })
+        .then((res) => {
+          location.reload()
+        })
+    })
+  })
+
+
+  score_div.addEventListener('mouseleave', (event) => 
+    outScore(event)
+  )
+  for (let i = 0; i < 10; i++){    
+    score_list[i].addEventListener('click', (event) => 
+      ratingScore(event, i + 1)
+    )
+    score_list[i].addEventListener('mouseover', (event) => 
+      hoverScore(event, i + 1)
+    )
+  }  
+  
+  function ratingScore(event, score) {
+    event.preventDefault()
+    user_score = score
+    for (let i = 0; i < score ; i++ ) {
+      const s = `active_${i}`
+      score_list[i].classList.add(`active_${i + 1}`)
+    }
+  }
+
+  function hoverScore(event, score) {
+    for (let i = 0; i < 10 ; i++ ) {
+      const s = `active_${i}`
+      score_list[i].classList.remove(`active_${i + 1}`)
+    }
+    for (let i = 0; i < score ; i++ ) {
+      const s = `active_${i}`
+      score_list[i].classList.add(`active_${i + 1}`)
+    }
+  }
+  function outScore(event) {
+    for (let i = 0; i < 10 ; i++ ) {
+      const s = `active_${i}`
+      score_list[i].classList.remove(`active_${i + 1}`)
+    }
+    for (let i = 0; i < user_score ; i++ ) {
+      const s = `active_${i}`
+      score_list[i].classList.add(`active_${i + 1}`)
+    }
+  }
+
+  const genres = document.querySelector('.genre-container').children
+  console.log(genres)
+  const genre1 = ['모험', '범죄', '가족']
+  const genre2 = ['판타지', '스릴러']
+  const genre3 = ['애니메이션', '전쟁']
+  const genre4 = ['드라마', '다큐멘터리']
+  const genre5 = ['공포', '코미디']
+  const genre6 = ['액션', '음악', 'TV영화']
+  const genre7 = ['역사', '미스터리']
+  const genre8 = ['서부', 'SF', '로맨스']
+  for(genre_pill of genres){
+    if (genre1.includes(genre_pill.innerHTML)) {
+      genre_pill.classList.add('text-bg-primary')
+    }
+    if (genre2.includes(genre_pill.innerHTML)) {
+      genre_pill.classList.add('text-bg-secondary')
+    }
+    if (genre3.includes(genre_pill.innerHTML)) {
+      genre_pill.classList.add('text-bg-success')
+    }
+    if (genre4.includes(genre_pill.innerHTML)) {
+      genre_pill.classList.add('text-bg-danger')
+    }
+    if (genre5.includes(genre_pill.innerHTML)) {
+      genre_pill.classList.add('text-bg-warning')
+    }
+    if (genre6.includes(genre_pill.innerHTML)) {
+      genre_pill.classList.add('text-bg-info')
+    }
+    if (genre7.includes(genre_pill.innerHTML)) {
+      genre_pill.classList.add('text-bg-light')
+    }
+    if (genre8.includes(genre_pill.innerHTML)) {
+      genre_pill.classList.add('text-bg-dark')
+    }
+  }
 
 
 

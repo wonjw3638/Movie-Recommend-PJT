@@ -6,7 +6,6 @@ from django.http import JsonResponse
 
 @require_GET
 def detail(request, movie_pk):
-    print(movie_pk)
 # def detail(request):
     movie = get_object_or_404(Movie, pk=movie_pk)
     comments = movie.comment_set.all()
@@ -24,7 +23,7 @@ def get_comments(request, movie_pk):
     for comment in movie.comment_set.all():
         print(comment.user.id)
         temp_comment = {
-            'user_id': comment.user.id,
+            'user_name': comment.user.username,
             'content': comment.content,
             'rating': comment.rating,
         }
@@ -37,22 +36,14 @@ def get_comments(request, movie_pk):
 
 @require_POST
 def create_comment(request, movie_pk):
+    user_score = request.GET.get('user_score')
     movie = get_object_or_404(Movie, pk=movie_pk)
-
-    if request.method == "POST":
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.movie = movie
-            comment.user = request.user
-            comment.save()
-            # return redirect('choices:detail', movie.pk)
-            return redirect('movies:detail', movie_pk)
-    # else:
-    #     comment_form = CommentForm()
-    context = {
-        'comment_form': comment_form,
-        'movie': movie,
-        'comments': movie.comment_set.all(),
-    }
-    return render(request, 'movies/detail.html', context)
+    comment_form = CommentForm(request.POST)
+    # user_score = int(request.GET['user_score'])
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.movie = movie
+        comment.user = request.user
+        comment.rating = user_score
+        comment.save()
+        return redirect('movies:detail', movie_pk)

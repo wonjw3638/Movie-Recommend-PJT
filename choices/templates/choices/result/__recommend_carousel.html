@@ -8,7 +8,9 @@
   <div class="carousel-inner">
     {% for movie in movies %}
       <div class="carousel-item">
-        <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" class="d-block w-100 " alt="...">
+        <a href="{% url 'movies:detail' movie.pk %}">
+          <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" class="d-block w-100 " alt="...">
+        </a>
         <div class="carousel-caption d-none d-md-block">
         </div>
       </div>

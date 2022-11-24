@@ -173,16 +173,8 @@
   <div class="col-12 col-sm-6 col-md-8 col-lg-10 px-3">
     <div class="rounded-4 bg-white position-relative">
       <span id="moviesTitle" class="position-absolute top-0 start-50 translate-middle rounded-5 px-5 moviesLike">{{ person.username }}의 모든 영화</span>
-      <div class="movie-box row p-4">
-        <img src="{% static 'image/loading.png' %}" alt="signup" style="width: 20rem;">
-        <!-- <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie1.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
-        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie2.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
-        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie3.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
-        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie4.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
-        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie5.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
-        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie6.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
-        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie7.jpg' %}" class="rounded-4 img-fluid" alt="..."></a>
-        <a href={% url 'choices:detail' %} class="d-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3"><img src="{% static 'dummy/movie8.jpg' %}" class="rounded-4 img-fluid" alt="..."></a> -->
+      <div class="movie-box row p-4 d-flex justify-content-center">
+        <img src="{% static 'image/loading.png' %}" class="align-self-center" alt="signup" style="width: 35rem;  opacity: 0.5;">
       </div>
     </div>
   </div>
@@ -212,23 +204,43 @@
       url: `/accounts/profile/${userName}/${genre}/`
     })
     .then((res) => {
-      title.innerText = `${userName}의 ${res.data.genre_name[genre]} 영화`
-      movies = res.data.final[genre]
       const boxTag = document.querySelector('.movie-box')
       boxTag.replaceChildren()
-      for (const movie of movies){
+      if (res.data.final[genre].length === 0){
+        console.log(res.data.final[genre].length)
+        console.log('영화없음')
+
         const movieBox = document.createElement('a')
-        const id = 3
-        {% comment %} console.log(id) {% endcomment %}
-        movieBox.setAttribute('class', 'd-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3')
-        movieBox.setAttribute('href', '{% url 'movies:detail' movie_pk=0 %}'.replace('0', movie.pk))
-  
+        const imgDiv = document.createElement('div')
         const imgTag = document.createElement('img')
-        imgTag.setAttribute('src', `https://image.tmdb.org/t/p/original${movie.poster}`)
-        imgTag.setAttribute('class', 'rounded-4 img-fluid')
-  
-        movieBox.appendChild(imgTag)
-        boxTag.appendChild(movieBox)
+        imgTag.setAttribute('src', '{% static 'image/movieNull.png' %}')
+        imgTag.setAttribute('class', 'rounded-4 align-self-center')
+        imgTag.setAttribute('style', 'width: 25rem;')
+        
+        const textTag = document.createElement('h1')
+        textTag.innerText = '고른 영화가 없어요😯'
+        textTag.classList.add("text-center","fs-2")
+        boxTag.appendChild(imgTag)
+        boxTag.appendChild(textTag)
+
+      } else{
+        title.innerText = `${userName}의 ${res.data.genre_name[genre]} 영화`
+        movies = res.data.final[genre]
+        for (const movie of movies){
+          const movieBox = document.createElement('a')
+
+          const id = 3
+          {% comment %} console.log(id) {% endcomment %}
+          movieBox.setAttribute('class', 'd-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3')
+          movieBox.setAttribute('href', '{% url 'movies:detail' movie_pk=0 %}'.replace('0', movie.pk))
+    
+          const imgTag = document.createElement('img')
+          imgTag.setAttribute('src', `https://image.tmdb.org/t/p/original${movie.poster}`)
+          imgTag.setAttribute('class', 'rounded-4 img-fluid')
+    
+          movieBox.appendChild(imgTag)
+          boxTag.appendChild(movieBox)
+        }
       }
     })
     .catch((err) => {
