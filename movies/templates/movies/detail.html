@@ -346,6 +346,7 @@
   const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
   const review_scores = document.querySelectorAll('#review_rating')
   
+  // 평점 매길 때 숫자에 마우스 올리면 색이 호로록 바뀌게 하는 기능
   for (review_score of review_scores) {
     console.log(review_score)
     review_score.classList.add(`active_${review_score.innerText}`)
@@ -430,6 +431,7 @@
     }
   }
 
+  // 영화 상세 페이지에서 각 장르별로 색상 다르게 하기
   const genres = document.querySelector('.genre-container').children
   console.log(genres)
   const genre1 = ['모험', '범죄', '가족']

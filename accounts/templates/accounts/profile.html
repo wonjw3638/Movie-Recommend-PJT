@@ -186,6 +186,7 @@
 <script>
   const userName = document.querySelector('#userName').innerText
 
+  // 유저가 선택한 모든 영화들을 볼 수 있는 버튼과 유저가 좋아하는 상위 3개의 장르에 해당하는 버튼
   function clickGenre(event, genre){
     const title = document.querySelector('#moviesTitle')
     title.setAttribute('class', 'position-absolute top-0 start-50 translate-middle rounded-5 px-5 ')
@@ -207,7 +208,7 @@
       const boxTag = document.querySelector('.movie-box')
       boxTag.replaceChildren()
       if (res.data.final[genre].length === 0){
-        console.log(res.data.final[genre].length)
+        // 선택한 영화가 없는 경우
         console.log('영화없음')
 
         const movieBox = document.createElement('a')
@@ -228,9 +229,6 @@
         movies = res.data.final[genre]
         for (const movie of movies){
           const movieBox = document.createElement('a')
-
-          const id = 3
-          {% comment %} console.log(id) {% endcomment %}
           movieBox.setAttribute('class', 'd-flex justify-content-center col-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 my-3')
           movieBox.setAttribute('href', '{% url 'movies:detail' movie_pk=0 %}'.replace('0', movie.pk))
     
@@ -250,21 +248,25 @@
 
   clickGenre(event, 0)
 
+  // 모든 영화
   const btn = document.querySelector('#total')
   btn.addEventListener('click', (event) => {
     clickGenre(event, 0)
   })
   
+  // 선호하는 장르 1
   const btn1 = document.querySelector('#genre1')
   btn1.addEventListener('click', (event) => {
     clickGenre(event, 1)
   })
   
+  // 선호하는 장르 2
   const btn2 = document.querySelector('#genre2')
   btn2.addEventListener('click', (event) => {
     clickGenre(event, 2)
   })
-      
+  
+  // 선호하는 장르 3
   const btn3 = document.querySelector('#genre3')
   btn3.addEventListener('click', (event) => {
     clickGenre(event, 3)

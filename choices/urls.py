@@ -10,5 +10,4 @@ urlpatterns = [
     path('trailer/', views.trailer, name='trailer'),
     path('<int:idx>/<str:prefer>/', views.select, name='select'),
     path('result/', views.result, name='result'),
-    path('detail/', views.detail, name='detail'),
 ]

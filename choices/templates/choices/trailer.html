@@ -128,9 +128,6 @@
   </div>
 </div>
 
-<!-- <div class="toast-container position-fixed bottom-0 end-0 p-3"> -->
-<!-- </div> -->
-
 
 {% endblock content %}
 
@@ -144,19 +141,24 @@
   const trailerTag = document.querySelector(".trailer")
   const iframeTag = document.createElement('iframe')
 
+  // 테스트를 시작하면 보이는 첫 영화 세팅
   iframeTag.setAttribute('src', "{{ movies.0.trailer_url }}")
   iframeTag.setAttribute('allowFullScreen', '')
   trailerTag.insertBefore(iframeTag, trailerTag.firstChild)
   let id = {{movies.0.id}}
   let idx = 1
   
+  // Good 혹은 Bad 버튼을 누르면 일어나는 일
   function clickButton(event, pref) {
     event.preventDefault()
     
+    // toast가 보이고 있다면 끈다
     const activeToastTag = document.querySelector('.toast-container > .show')
     if(activeToastTag){
       activeToastTag.classList.remove('show')
     }
+
+    // 영화에 대한 사용자의 의견을 DB에 저장하기 위한 과정
     axios({
       method: 'get',
       url: `/choices/${idx - 1}/${pref}/`
@@ -177,6 +179,7 @@
       trailerTag.insertBefore(iframeTag, trailerTag.firstChild)
       titleTag.innerHTML = res.data.title
 
+      // 다음 영화로 넘어간다
       id = res.data.id
       idx += 1
       idxTag.innerHTML = idx
@@ -186,6 +189,7 @@
     })
   }
 
+  // 좋아요 싫어요 버튼에 함수 설정
   likeButton.addEventListener('click', (event) => {
     clickButton(event, "like")
   })
@@ -194,7 +198,7 @@
     clickButton(event, "dislike")
   })
   
-  
+  // Review 버튼을 누르면 toast가 튀어나오는 과정
   const reviewTag = document.getElementById('reviewToastBtn')
   reviewTag.addEventListener("click", (event) => {
     event.preventDefault()
@@ -211,31 +215,18 @@
         toast.show()
       } else {
         console.log("리뷰가 있음")
+        // 해당 영화의 리뷰 중 랜덤으로 하나 고르고 보여주기
         const randomReview = reviews[Math.floor(Math.random()*reviews.length)];
         const toastTag = document.getElementById('ReviewToast')
         const bodyTag = toastTag.querySelector('.toast-body')
-        bodyTag.innerHTML = randomReview.content
         const userTag = toastTag.querySelector('strong')
+        bodyTag.innerHTML = randomReview.content
         userTag.innerHTML = randomReview.user_name
-
-
 
         const toast = new bootstrap.Toast(toastTag)
         toast.show()
       }
       
-      // console.log(reviews)
-      
-      
-      // for (review of reviews){
-      //   console.log(review)
-      //   console.log(review.user_name)
-      //   console.log(review.content)
-      //   console.log(review.rating)
-      //   console.log("-------")
-      // }
-      // const 
-      // console.log()
     })
     .catch((err) => {
       console.log(err)

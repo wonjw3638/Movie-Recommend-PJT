@@ -144,6 +144,8 @@
 
 {% block script %}
 <script>
+  // carousel을 for문으로 생성했기 때문에 carousel의 첫 영화에만 active 클래스를 넣어주었다
+  // 첫 영화가 active가 아니라면 carousel이 작동하지 않기 때문...
   const indicatorTags = document.querySelectorAll('.carousel-indicators')
   indicatorTags.forEach((indicatorTag) => {
     indicatorTag.querySelector('button').classList.add('active')

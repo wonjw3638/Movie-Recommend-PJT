@@ -132,6 +132,9 @@
 {% block script %}
 <script>
   const val = document.querySelector('#final')
+
+  // 유저가 선택한 영화 개수를 DB에 저장하기 위해 view로 넘기는 과정
+  // form의 submit을 이용해서 더 야무지게 바꿀 수 있었을듯
   val.addEventListener('click', (e) => {
     e.preventDefault()
     const pick = document.querySelector('input[name="pcs"]:checked').value;

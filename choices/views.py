@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
+from django.http import JsonResponse
 from .models import Choice
 from movies.models import Movie, Genre
 
 from collections import defaultdict
 from random import sample
 
-from django.http import JsonResponse
 
 def index(request):
     return render(request, 'choices/index.html')
@@ -19,11 +19,7 @@ def option(request, opt):
     movies = list(Movie.objects.all())
     option_movies = sample(movies, opt)
     choice.option_movies.set(option_movies)
-    # selected_idx = sample(range(100), opt)
-    # for idx in selected_idx:
-    #     if choice.option_movies.count() == opt:
-    #         break
-    #     choice.option_movies.add(movies[idx])
+    
     context = {
         'result': opt
     }
@@ -49,8 +45,6 @@ def select(request, idx, prefer):
     if idx == options - 1:
         return JsonResponse({'result': True})
     next_movie = choice.option_movies.all()[idx + 1]
-    # print(choice.like_movies.all())
-    # print(choice.dislike_movies.all())
     context = {
         'idx': idx,
         'title': next_movie.title,
@@ -63,7 +57,6 @@ def select(request, idx, prefer):
 def result(request):
     choice = Choice.objects.last()
     like_movies = choice.like_movies.all()
-    favs = list()
     genre_list = defaultdict(int)
     for movie in like_movies:
         for genre in movie.genres.all():
@@ -77,24 +70,9 @@ def result(request):
         recommend = sample(genre_movies, 5)
         genre_names.append(genre_name)
         genre_recommends[genre_name] = recommend
-        # print(genre_recommend)
-    # print(like_genres)
     context = {
         'genre_names': genre_names,
         'genre_recommends': genre_recommends,
         'like_movies': like_movies
     }
     return render(request, 'choices/result.html', context)
-
-
-
-# def detail(request, movie_pk):
-def detail(request):
-    movie = get_object_or_404(Movie, pk=10)
-    comments = movie.comment_set.all()
-    context = {
-        'movie': movie,
-        'comments': comments,
-    }
-
-    return render(request, 'choices/detail.html', context)
