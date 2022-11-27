@@ -4,9 +4,9 @@
 
 제  작  자 : 김지원, 박서영
 
-|       <a src="https://github.com/wonjw3638">김지원</a>       |       <a src="https://github.com/manchott"> 박서영</a>       |
+|           [김지원]("https://github.com/wonjw3638")           |            [박서영](https://github.com/manchott)             |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <a src="https://github.com/wonjw3638"><img src=https://github.com/wonjw3638.png width="150px;" alt="https://github.com/wonjw3638"/></a> | <a src="https://github.com/manchott"><img src=https://github.com/manchott.png width="150px;" alt="https://github.com/manchott"/></a> |
+| <a href="https://github.com/wonjw3638"><img src=https://github.com/wonjw3638.png width="150px;" alt="https://github.com/wonjw3638"/></a> | <a href="https://github.com/manchott"><img src=https://github.com/manchott.png width="150px;" alt="https://github.com/manchott"/></a> |
 |                         **Frontend**                         |                         **Backend**                          |
 
 날        짜 : 2022-11-17 ~ 2022-11-24
