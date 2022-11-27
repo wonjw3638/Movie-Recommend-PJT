@@ -1,4 +1,4 @@
-# 🎬 FINAL PJT
+# 🎬 Movie Recommend Project
 
 ### **✔ 개요**
 
