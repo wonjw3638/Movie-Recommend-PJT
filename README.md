@@ -4,10 +4,10 @@
 
 제  작  자 : 김지원, 박서영
 
-|                            김지원                            |                            박서영                            |
+|       <a src="https://github.com/wonjw3638">김지원</a>       |       <a src="https://github.com/manchott"> 박서영</a>       |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img src=https://github.com/wonjw3638.png width="150px;" alt="https://github.com/wonjw3638"/> | <img src=https://github.com/manchott.png width="150px;" alt="https://github.com/manchott"/> |
-|                           Frontend                           |                           Backend                            |
+| <a src="https://github.com/wonjw3638"><img src=https://github.com/wonjw3638.png width="150px;" alt="https://github.com/wonjw3638"/></a> | <a src="https://github.com/manchott"><img src=https://github.com/manchott.png width="150px;" alt="https://github.com/manchott"/></a> |
+|                         **Frontend**                         |                         **Backend**                          |
 
 날        짜 : 2022-11-17 ~ 2022-11-24
 
